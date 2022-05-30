@@ -27,6 +27,7 @@
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/restrict-plus-operands": "off",
     "@typescript-eslint/no-useless-constructor": "error",
+    "class-methods-use-this": "off",
     "no-useless-constructor": "off",
     "prettier/prettier": "error",
     "import/extensions": "off",
