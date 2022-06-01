@@ -1,11 +1,11 @@
 .wrapper {
   display: flex;
+  margin-bottom: 2rem;
 }
 
 .inputContainer {
-  background-color: red;
   position: relative;
-  height: 40px;
+  flex: 1;
 }
 
 .input {
@@ -16,15 +16,16 @@
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
   color: var(--secondary-blue);
+  padding-left: 3rem;
 }
 .input::placeholder {
   color: var(--dark-gray);
 }
 
 .icon {
-  background-color: #b3ff00;
   height: 100%;
-  width: 40px;
+  width: 1.2rem;
+  left: 12px;
   bottom: 0;
   position: absolute;
 }

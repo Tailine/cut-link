@@ -10,11 +10,69 @@ main {
 
 .container {
   width: 80%;
-  background-color: aquamarine;
+}
+
+label {
+  color: var(--gray);
+  display: block;
+  margin-bottom: .8rem;
 }
 
 h1 {
   color: var(--gray);
   text-align: center;
   margin-bottom: 2rem;
+}
+.wrapper {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.inputContainer {
+  position: relative;
+  flex: 1;
+}
+
+.input {
+  padding: .8rem .5rem;
+  width: 100%;
+  border: none;
+  display: block;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  color: var(--secondary-blue);
+  padding-left: 3rem;
+}
+.input::placeholder {
+  color: var(--dark-gray);
+}
+
+.icon {
+  height: 100%;
+  width: 1.2rem;
+  left: 12px;
+  bottom: 0;
+  position: absolute;
+}
+
+.button {
+  background-color: var(--pink);
+  border: 0;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  color: var(--secondary-blue);
+  font-weight: bold;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.shortLinkContainer {
+  background-color: var(--pink);
+  padding: .8rem .5rem;
+}
+
+.shortLinkInput {
+  background-color: var(--pink);
+  border: none;
+  font-weight: bold;
 }
