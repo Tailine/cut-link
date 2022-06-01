@@ -10,40 +10,34 @@ export class LinkController {
     const { url } = req.body
 
     if (!validateUrl(url)) {
-      res.status(400)
-      res.json({ message: 'Please provide a valid url' })
+      res.status(400).json({ message: 'Please provide a valid url' })
     }
 
     try {
       const { error, hash } = await this.service.shortenLink(url)
       if (error) {
-        res.status(500)
-        res.json({ error })
+        res.status(500).json({ error })
       }
 
-      res.status(200)
-      res.json({ hash })
+      res.status(200).json({ hash })
     } catch (err) {
-      res.status(500)
-      res.json({ error: err })
+      res.status(500).json({ error: err })
     }
   }
 
   handleRedirect = async (req: Request, res: Response) => {
     try {
       const { hash } = req.params
-      console.log({ hash })
+
       if (hash) {
         const originalUrl = await this.service.getLink(hash)
         if (originalUrl) {
           res.redirect(301, originalUrl)
         }
       }
-      res.status(200)
-      res.json({ message: 'It worked' })
+      res.status(200).json({ message: 'It worked' })
     } catch (err) {
-      res.status(404)
-      res.json({ message: 'Invalid link' })
+      res.status(404).json({ message: 'Invalid link' })
     }
   }
 }

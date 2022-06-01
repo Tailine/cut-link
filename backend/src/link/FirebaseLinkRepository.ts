@@ -9,8 +9,8 @@ export class FirebaseLinkRepository implements LinkRepository {
       return { error: 'No duplicated links allowed' }
     }
 
-    await FirebaseClient.createShortLink(linkData)
-    return { hash: linkData.hash }
+    const uniqueHash = await FirebaseClient.createShortLink(linkData)
+    return { hash: uniqueHash }
   }
 
   async get(hash: string): Promise<string | null> {
