@@ -1,8 +1,10 @@
 import { ChangeEvent, useState } from "react";
 import s from "./App.module.css";
-import { Input } from "./components/Input";
 import { LinkIcon } from "./components/LinkIcon";
-import { IconColors } from "./types";
+import { IconColors, LinkHashResponse } from "./types";
+import copyIcon from "./assets/icon-copy.svg";
+
+const BASE_URL = "localhost:5000/";
 
 function App() {
   const [shortUrl, setShortUrl] = useState("");
@@ -23,13 +25,13 @@ function App() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({
         url: originalUrl,
       }),
     });
-    const data = await resp.json();
+    const data: LinkHashResponse = await resp.json();
+    setShortUrl(`${BASE_URL}${data.hash}`);
     console.log({ data });
   }
 
@@ -54,11 +56,15 @@ function App() {
         </div>
         <section>
           <label className={s.label}>Short url</label>
-          <div className={s.shortLinkContainer}>
-            <LinkIcon color={IconColors.BLUE} />
-            <p>{shortUrl}</p>
+          <div className={s.copyWrapper}>
+            <div className={s.shortLinkWrapper}>
+              <LinkIcon color={IconColors.BLUE} />
+              <p>{shortUrl}</p>
+            </div>
+            <button className={s.copyBtn} onClick={copyTextToClipboard}>
+              <img src={copyIcon} alt="copy icon" />
+            </button>
           </div>
-          <button onClick={copyTextToClipboard}>copy</button>
         </section>
       </div>
     </main>

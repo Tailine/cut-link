@@ -12,6 +12,18 @@ main {
   width: 80%;
 }
 
+@media only screen and (min-width: 801px) {
+  .container {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1281px) {
+  .container {
+    width: 30%;
+  }
+}
+
 label {
   color: var(--gray);
   display: block;
@@ -22,6 +34,7 @@ h1 {
   color: var(--gray);
   text-align: center;
   margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 .wrapper {
   display: flex;
@@ -50,8 +63,8 @@ h1 {
 .icon {
   height: 100%;
   width: 1.2rem;
-  left: 12px;
-  bottom: 0;
+  left: 16px;
+  top: 11px;
   position: absolute;
 }
 
@@ -63,16 +76,42 @@ h1 {
   color: var(--secondary-blue);
   font-weight: bold;
   padding: 0 1rem;
-  cursor: pointer;
 }
 
-.shortLinkContainer {
+.copyWrapper {
+  display: flex;
+}
+
+.shortLinkWrapper {
   background-color: var(--pink);
-  padding: .8rem .5rem;
+  padding: .8rem 1rem;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.shortLinkWrapper p {
+  margin-left: 1rem;
+  font-size: .8rem;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .shortLinkInput {
   background-color: var(--pink);
   border: none;
   font-weight: bold;
+}
+
+.copyBtn {
+  background-color: var(--secondary-blue);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  padding: 0 1.5rem;
+}
+
+.copyBtn img {
+  width: 20px;
 }
