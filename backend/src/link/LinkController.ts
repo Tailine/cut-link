@@ -10,18 +10,18 @@ export class LinkController {
     const { url } = req.body
 
     if (!validateUrl(url)) {
-      res.status(400).json({ message: 'Please provide a valid url' })
+      return res.status(400).json({ message: 'Please provide a valid url' })
     }
 
     try {
       const { error, hash } = await this.service.shortenLink(url)
       if (error) {
-        res.status(500).json({ error })
+        return res.status(500).json({ error })
       }
 
-      res.status(200).json({ hash })
+      return res.status(200).json({ hash })
     } catch (err) {
-      res.status(500).json({ error: err })
+      return res.status(500).json({ error: err })
     }
   }
 
@@ -32,12 +32,12 @@ export class LinkController {
       if (hash) {
         const originalUrl = await this.service.getLink(hash)
         if (originalUrl) {
-          res.redirect(301, originalUrl)
+          return res.redirect(301, originalUrl)
         }
       }
-      res.status(200).json({ message: 'It worked' })
+      return res.status(200).json({ message: 'It worked' })
     } catch (err) {
-      res.status(404).json({ message: 'Invalid link' })
+      return res.status(404).json({ message: 'Invalid link' })
     }
   }
 }
