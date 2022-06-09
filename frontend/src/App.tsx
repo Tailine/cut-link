@@ -3,18 +3,13 @@ import s from "./App.module.css";
 import { LinkIcon } from "./components/LinkIcon";
 import { IconColors, LinkHashResponse } from "./types";
 import copyIcon from "./assets/icon-copy.svg";
+import { copyToClipboard } from "./utils/copyToClipboard";
 
 const BASE_URL = "localhost:5000/";
 
 function App() {
   const [shortUrl, setShortUrl] = useState("");
   const [originalUrl, setOriginalUrl] = useState("");
-
-  async function copyTextToClipboard() {
-    if ("clipboard" in navigator) {
-      return await navigator.clipboard.writeText(shortUrl);
-    }
-  }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setOriginalUrl(e.target.value);
@@ -33,6 +28,10 @@ function App() {
     const data: LinkHashResponse = await resp.json();
     setShortUrl(`${BASE_URL}${data.hash}`);
     console.log({ data });
+  }
+
+  async function copy() {
+    await copyToClipboard(shortUrl);
   }
 
   return (
@@ -61,7 +60,7 @@ function App() {
               <LinkIcon color={IconColors.BLUE} />
               <p>{shortUrl}</p>
             </div>
-            <button className={s.copyBtn} onClick={copyTextToClipboard}>
+            <button className={s.copyBtn} onClick={copy}>
               <img src={copyIcon} alt="copy icon" />
             </button>
           </div>
