@@ -10,7 +10,7 @@ export class LinkController {
     const { url } = req.body
 
     if (!validateUrl(url)) {
-      return res.status(400).json({ message: 'Please provide a valid url' })
+      return res.status(400).json({ error: 'Please provide a valid url' })
     }
 
     try {

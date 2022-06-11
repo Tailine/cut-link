@@ -1,33 +1,31 @@
 import { ChangeEvent, useState } from "react";
 import s from "./App.module.css";
 import { LinkIcon } from "./components/LinkIcon";
-import { IconColors, LinkHashResponse } from "./types";
+import { IconColors } from "./types";
 import copyIcon from "./assets/icon-copy.svg";
 import { copyToClipboard } from "./utils/copyToClipboard";
+import { shortenUrl } from "./services/shortenUrl";
 
 const BASE_URL = "localhost:5000/";
 
 function App() {
   const [shortUrl, setShortUrl] = useState("");
   const [originalUrl, setOriginalUrl] = useState("");
+  const [error, setError] = useState("");
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setOriginalUrl(e.target.value);
   }
 
-  async function shortenUrl() {
-    const resp = await fetch("http://localhost:5000", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        url: originalUrl,
-      }),
-    });
-    const data: LinkHashResponse = await resp.json();
-    setShortUrl(`${BASE_URL}${data.hash}`);
-    console.log({ data });
+  async function handleShortenUrl() {
+    const { hash, error } = await shortenUrl(originalUrl);
+    if (error) {
+      setError(error);
+    } else {
+      setShortUrl(`${BASE_URL}${hash}`);
+      setError("");
+    }
+    console.log({ hash, error });
   }
 
   async function copy() {
@@ -37,21 +35,25 @@ function App() {
   return (
     <main>
       <div className={s.container}>
-        <h1>Mini link</h1>
-        <div className={s.wrapper}>
-          <div className={s.inputContainer}>
-            <input
-              placeholder="Paste link here"
-              className={s.input}
-              onChange={handleChange}
-            />
-            <div className={s.icon}>
-              <LinkIcon color={IconColors.GRAY} />
+        <h1>Tiny link</h1>
+        <div className={s.originalUrlSection}>
+          <label className={s.label}>Paste your link below</label>
+          <div className={s.inputSection}>
+            <div className={s.inputContainer}>
+              <input
+                placeholder="Ex: https://youtube.com"
+                className={s.input}
+                onChange={handleChange}
+              />
+              {error && <p className={s.errorMsg}>{error}</p>}
+              <div className={s.icon}>
+                <LinkIcon color={IconColors.GRAY} />
+              </div>
             </div>
+            <button className={s.button} onClick={handleShortenUrl}>
+              Shorten
+            </button>
           </div>
-          <button className={s.button} onClick={shortenUrl}>
-            Shorten
-          </button>
         </div>
         <section>
           <label className={s.label}>Short url</label>

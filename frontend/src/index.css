@@ -1,10 +1,12 @@
 :root {
   --main-bg-color: #110F22;
   --secondary-blue: #2E2B48;
+  --medium-blue: #1c1c2e;
   --gray: #F8F8F8;
   --dark-gray: #BBBBBB;
   --pink: #F7C3FF;
   --border-radius: 4px;
+  --red: #ff7070;
 }
 
 * {

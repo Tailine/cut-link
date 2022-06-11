@@ -14,15 +14,24 @@ main {
 
 @media only screen and (min-width: 801px) {
   .container {
-    width: 50%;
+    width: 60%;
   }
 }
 
 @media only screen and (min-width: 1281px) {
   .container {
-    width: 30%;
+    width: 40%;
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .container {
+    background: var(--medium-blue);
+    padding: 3rem;
+    border-radius: 4px;
+  }
+}
+
 
 label {
   color: var(--gray);
@@ -36,14 +45,29 @@ h1 {
   margin-bottom: 2rem;
   text-transform: uppercase;
 }
-.wrapper {
+.originalUrlSection {
   display: flex;
   margin-bottom: 2rem;
+  flex-direction: column;
+}
+
+.inputSection {
+  display: flex;
 }
 
 .inputContainer {
   position: relative;
   flex: 1;
+}
+
+.inputContainer input {
+  height: 40px;
+}
+
+.errorMsg {
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 12px;
 }
 
 .input {
@@ -56,6 +80,7 @@ h1 {
   color: var(--secondary-blue);
   padding-left: 3rem;
 }
+
 .input::placeholder {
   color: var(--dark-gray);
 }
@@ -68,7 +93,7 @@ h1 {
   position: absolute;
 }
 
-.button {
+.inputSection button {
   background-color: var(--pink);
   border: 0;
   border-top-right-radius: var(--border-radius);
@@ -76,6 +101,7 @@ h1 {
   color: var(--secondary-blue);
   font-weight: bold;
   padding: 0 1rem;
+  height: 40px;
 }
 
 .copyWrapper {
