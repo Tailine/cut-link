@@ -104,6 +104,10 @@ h1 {
   height: 40px;
 }
 
+.shortUrl {
+  position: relative;
+}
+
 .copyWrapper {
   display: flex;
 }
@@ -129,6 +133,14 @@ h1 {
   background-color: var(--pink);
   border: none;
   font-weight: bold;
+}
+
+.copyArea {
+  color: var(--pink);
+  font-size: 12px;
+  margin-top: 8px;
+  position: absolute;
+  right: 10px;
 }
 
 .copyBtn {

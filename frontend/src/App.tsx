@@ -1,10 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import s from "./App.module.css";
 import { LinkIcon } from "./components/LinkIcon";
 import { IconColors } from "./types";
 import copyIcon from "./assets/icon-copy.svg";
-import { copyToClipboard } from "./utils/copyToClipboard";
 import { shortenUrl } from "./services/shortenUrl";
+import { useCopy } from "./hooks/useCopy";
 
 const BASE_URL = "localhost:5000/";
 
@@ -12,6 +12,7 @@ function App() {
   const [shortUrl, setShortUrl] = useState("");
   const [originalUrl, setOriginalUrl] = useState("");
   const [error, setError] = useState("");
+  const { onCopy, displayCopyFeedback } = useCopy();
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setOriginalUrl(e.target.value);
@@ -25,11 +26,10 @@ function App() {
       setShortUrl(`${BASE_URL}${hash}`);
       setError("");
     }
-    console.log({ hash, error });
   }
 
-  async function copy() {
-    await copyToClipboard(shortUrl);
+  function handleCopy() {
+    onCopy(shortUrl);
   }
 
   return (
@@ -55,17 +55,18 @@ function App() {
             </button>
           </div>
         </div>
-        <section>
+        <section className={s.shortUrl}>
           <label className={s.label}>Short url</label>
           <div className={s.copyWrapper}>
             <div className={s.shortLinkWrapper}>
               <LinkIcon color={IconColors.BLUE} />
               <p>{shortUrl}</p>
             </div>
-            <button className={s.copyBtn} onClick={copy}>
+            <button className={s.copyBtn} onClick={handleCopy}>
               <img src={copyIcon} alt="copy icon" />
             </button>
           </div>
+          {displayCopyFeedback && <p className={s.copyArea}>Copied!</p>}
         </section>
       </div>
     </main>
