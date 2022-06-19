@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { copyToClipboard } from "../utils/copyToClipboard";
 
 export function useCopy() {
-  const [displayCopyFeedback, setDisplayCopyFeedback] = useState(true);
+  const [displayCopyFeedback, setDisplayCopyFeedback] = useState(false);
 
   useEffect(() => {
     const feedbackDisplay = setTimeout(() => {
