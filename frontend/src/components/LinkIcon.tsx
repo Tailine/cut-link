@@ -7,6 +7,7 @@ interface Props {
 export function LinkIcon({ color }: Props) {
   return (
     <svg
+      aria-hidden
       width="20"
       height="20"
       viewBox="0 0 30 30"

@@ -110,6 +110,7 @@ h1 {
 
 .copyWrapper {
   display: flex;
+  position: relative;
 }
 
 .shortLinkWrapper {
@@ -122,11 +123,18 @@ h1 {
   align-items: center;
 }
 
-.shortLinkWrapper p {
+.shortLinkWrapper input {
   margin-left: 1rem;
   font-size: .8rem;
   font-weight: bold;
   text-decoration: underline;
+  width: 100%;
+  background: inherit;
+  border: 0;
+}
+
+.shortLinkWrapper input:focus {
+  outline: none;
 }
 
 .shortLinkInput {
@@ -152,4 +160,13 @@ h1 {
 
 .copyBtn img {
   width: 20px;
+}
+
+.overlay {
+  background-color: #f1f1f1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+  opacity: 70%;
 }
