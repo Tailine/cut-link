@@ -1,6 +1,6 @@
-import { LinkData } from '@entities/link'
-import { LinkRepository } from '@repositories/LinkRepository'
-import { FirebaseClient } from '@repositories/helpers/firebaseHelper'
+import { LinkData } from '../entities/link'
+import { FirebaseClient } from '../repositories/helpers/firebaseHelper'
+import { LinkRepository } from '../repositories/LinkRepository'
 
 export class FirebaseLinkRepository implements LinkRepository {
   async create(linkData: LinkData) {

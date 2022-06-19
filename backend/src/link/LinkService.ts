@@ -1,5 +1,5 @@
-import { FirebaseLinkRepository } from '@link/FirebaseLinkRepository'
 import { nanoid } from 'nanoid'
+import { FirebaseLinkRepository } from './FirebaseLinkRepository'
 
 export class LinkService {
   constructor(private repository: FirebaseLinkRepository) {}

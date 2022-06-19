@@ -1,5 +1,3 @@
-import { dbInstance } from 'dbConnection'
-import { LinkData } from '@entities/link'
 import {
   collection,
   doc,
@@ -10,6 +8,8 @@ import {
   setDoc,
   where
 } from 'firebase/firestore'
+import { dbInstance } from '../../dbConnection'
+import { LinkData } from '../../entities/link'
 
 export const FirebaseClient = {
   createShortLink: async (linkData: LinkData): Promise<string> => {

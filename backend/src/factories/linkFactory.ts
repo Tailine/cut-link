@@ -1,6 +1,6 @@
-import { FirebaseLinkRepository } from '@link/FirebaseLinkRepository'
-import { LinkController } from '@link/LinkController'
-import { LinkService } from '@link/LinkService'
+import { FirebaseLinkRepository } from '../link/FirebaseLinkRepository'
+import { LinkController } from '../link/LinkController'
+import { LinkService } from '../link/LinkService'
 
 export function createLinkController() {
   const linkRepository = new FirebaseLinkRepository()

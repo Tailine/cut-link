@@ -1,7 +1,6 @@
-import { LinkService } from '@link/LinkService'
-import { validateUrl } from '@utils/validateUrl'
 import { Request, Response } from 'express'
-// import { validateUrl } from '@utils/validateUrl'
+import { validateUrl } from '../utils/validateUrl'
+import { LinkService } from './LinkService'
 
 export class LinkController {
   constructor(private service: LinkService) {}

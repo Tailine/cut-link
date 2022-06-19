@@ -1,5 +1,5 @@
-import { createLinkController } from '@factories/linkFactory'
 import { Router } from 'express'
+import { createLinkController } from '../factories/linkFactory'
 
 const router = Router()
 const linkController = createLinkController()
