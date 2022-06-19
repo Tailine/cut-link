@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import s from "./App.module.css";
 import { LinkIcon } from "./components/LinkIcon";
 import { IconColors } from "./types";
@@ -14,6 +14,7 @@ function App() {
   const [shortUrl, setShortUrl] = useState("");
   const [originalUrl, setOriginalUrl] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { onCopy, displayCopyFeedback } = useCopy();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,6 +31,7 @@ function App() {
       focusInput();
       return setError(ERROR_MESSAGE);
     }
+    setLoading(true);
 
     const { hash, error } = await shortenUrl(originalUrl);
     if (error) {
@@ -38,13 +40,12 @@ function App() {
       setShortUrl(`${BASE_URL}${hash}`);
       setError("");
     }
+    setLoading(false);
   }
 
   function handleCopy() {
     onCopy(shortUrl);
   }
-
-  const overlayClass = !shortUrl ? s.overlay : undefined;
 
   return (
     <main>
@@ -91,7 +92,11 @@ function App() {
             Short url
           </label>
           <div aria-hidden={!shortUrl} className={s.copyWrapper}>
-            <div className={overlayClass} />
+            {!shortUrl && (
+              <div className={s.overlay}>
+                {loading && <p className={s.fade}>loading</p>}
+              </div>
+            )}
             <div className={s.shortLinkWrapper}>
               <LinkIcon color={IconColors.BLUE} />
               <input
