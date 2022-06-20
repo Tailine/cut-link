@@ -6,8 +6,8 @@ import copyIcon from "./assets/icon-copy.svg";
 import { shortenUrl } from "./services/shortenUrl";
 import { useCopy } from "./hooks/useCopy";
 import { validateUrl } from "./utils/urlValidation";
+import { BASE_URL } from "./utils/baseUrl";
 
-const BASE_URL = "localhost:5000/";
 const ERROR_MESSAGE = "Please provide a valid url. It must be an https url";
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
   }
 
   async function handleShortenUrl() {
+    setShortUrl("");
     if (!validateUrl(originalUrl)) {
       focusInput();
       return setError(ERROR_MESSAGE);
@@ -37,7 +38,7 @@ function App() {
     if (error) {
       setError(error);
     } else {
-      setShortUrl(`${BASE_URL}${hash}`);
+      setShortUrl(`${BASE_URL}/${hash}`);
       setError("");
     }
     setLoading(false);
@@ -92,9 +93,9 @@ function App() {
             Short url
           </label>
           <div aria-hidden={!shortUrl} className={s.copyWrapper}>
-            {!shortUrl && (
+            {loading && (
               <div className={s.overlay}>
-                {loading && <p className={s.fade}>loading</p>}
+                <p className={s.fade}>loading</p>
               </div>
             )}
             <div className={s.shortLinkWrapper}>

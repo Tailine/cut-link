@@ -1,5 +1,7 @@
+import { BASE_URL } from "../utils/baseUrl";
+
 export async function shortenUrl(url: string) {
-  const resp = await fetch("http://localhost:5000", {
+  const resp = await fetch(BASE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
