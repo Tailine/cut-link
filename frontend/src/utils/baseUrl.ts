@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://tiny-link-api.herokuapp.com'
+export const BASE_URL = 'https://cut-link-api.herokuapp.com'
