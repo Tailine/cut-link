@@ -15,6 +15,7 @@ export class FirebaseLinkRepository implements LinkRepository {
 
   async get(hash: string): Promise<string | null> {
     const docData = await FirebaseClient.getDocumentData(hash)
+
     if (!docData) {
       return null
     }
