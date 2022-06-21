@@ -51,7 +51,7 @@ function App() {
   return (
     <main>
       <div className={s.container}>
-        <h1>Tiny link</h1>
+        <h1>Cut link</h1>
         <div className={s.originalUrlSection}>
           <label htmlFor="original-url" className={s.label}>
             Paste your link below
