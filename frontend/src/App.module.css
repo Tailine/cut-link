@@ -43,7 +43,7 @@ h1 {
   color: var(--gray);
   text-align: center;
   margin-bottom: 2rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .originalUrlSection {
   display: flex;
