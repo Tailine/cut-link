@@ -7,8 +7,6 @@
 Simple url shortener app. <br>
 https://cutlink.netlify.app/
 
-<br>
-
 ## ⚛️&nbsp; Technologies Used
 
 - React
